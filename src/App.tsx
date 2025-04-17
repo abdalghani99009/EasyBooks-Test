@@ -5,9 +5,9 @@ import i18n from "./config/i18n";
 
 function App() {
   return (
-    <div dir={i18n.dir(i18n.language)}>
+    <main dir={i18n.dir(i18n.language)}>
       <AppRoutes />
-    </div>
+    </main>
   );
 }
 
