@@ -17,8 +17,7 @@ i18n
     )
   )
   .init({
-    lng: import.meta.env.VITE_LANGUAGE,
-    fallbackLng: "en",
+    fallbackLng: import.meta.env.VITE_LANGUAGE || "en",
     debug: true,
     interpolation: {
       escapeValue: false,
