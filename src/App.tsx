@@ -1,11 +1,12 @@
-import "devextreme/dist/css/dx.light.css";
+import "devextreme/dist/css/dx.material.custom-scheme.css";
 import "./App.css";
 import AppRoutes from "./routes";
-import i18n from "./config/i18n";
+import useI18nStore from "./store/i18n/useI18nStore";
 
 function App() {
+  const { dir } = useI18nStore();
   return (
-    <main dir={i18n.dir(i18n.language)}>
+    <main dir={dir}>
       <AppRoutes />
     </main>
   );
