@@ -1,0 +1,13 @@
+{
+  "validation": {
+    "required": "حقل {{target}} مطلوب",
+    "min": "يجب أن يحتوي {{target}} على أكثر من {{min}} أحرف"
+  },
+  "errors": {
+    "unknown": "حدث خطأ غير معروف، يرجى المحاولة مرة أخرى لاحقًا"
+  },
+  "language": {
+    "english": "English",
+    "arabic": "عربي"
+  }
+}

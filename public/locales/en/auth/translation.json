@@ -3,6 +3,7 @@
     "title": "Login",
     "username": "Username",
     "password": "Password",
-    "sign_in": "Sign In"
+    "sign_in": "Sign In",
+    "success": "You have logged in successfully!"
   }
 }

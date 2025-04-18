@@ -1,1 +1,11 @@
-{}
+{
+  "validation": {
+    "required": "The {{target}} feild is required",
+    "min": "{{target}} must have more than {{min}} letters"
+  },
+  "errors": { "unknown": "Unkonw error occured, please try again later" },
+  "language": {
+    "english": "English",
+    "arabic": "عربي"
+  }
+}
