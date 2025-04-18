@@ -1,49 +1,58 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import axios, {
+  AxiosError,
+  AxiosRequestConfig,
+  AxiosResponse,
+  isAxiosError,
+} from "axios";
 import { useCookies } from "react-cookie";
-import { MutateOptions, useMutation } from "react-query";
 
 import { baseUrl } from "../..";
+import { MutateOptions, useMutation } from "@tanstack/react-query";
+import { useState } from "react";
+import notify from "devextreme/ui/notify";
+import { useTranslation } from "react-i18next";
 
-export type FilesState = Record<string, File>;
-
-export interface SelectedOption {
-  value: string | number;
-  label: string;
-}
-
-export interface ArrayObject {
-  id: any;
-  value: any;
-  deleted?: boolean;
-  uploaded?: boolean;
-}
-
-interface MutationProps<FormValues> {
+interface MutationProps<FormDataType> {
   url: string;
-  data?: FormValues;
+  data?: FormDataType;
   requestConfig?: AxiosRequestConfig;
 }
 
-export interface SubmitProps<FormValues> extends MutationProps<FormValues> {
+export interface SubmitProps<
+  FormDataType,
+  SuccessResponseType = any,
+  ErrorResponseType = any,
+> extends MutationProps<FormDataType> {
   mutateOptions?: MutateOptions<
-    AxiosResponse<any, any>,
-    any,
-    MutationProps<FormValues>,
+    AxiosResponse<SuccessResponseType>,
+    AxiosError<ErrorResponseType> | Error,
+    MutationProps<FormDataType>,
     unknown
   >;
 }
 
-export const usePOST = <FormValues extends Record<string, any>>() => {
+export const usePOST = <FormDataType extends Record<string, any>>(
+  initialData?: FormDataType
+) => {
+  const [formData, setFormData] = useState<FormDataType | undefined>(
+    initialData
+  );
   const [cookies] = useCookies(["token"], {
     doNotParse: true,
   });
+  const { t } = useTranslation("common");
 
-  const mutation = useMutation(
-    async ({ url, data, requestConfig }: MutationProps<FormValues>) => {
+  const mutation = useMutation({
+    mutationFn: async ({
+      url,
+      data,
+      requestConfig,
+    }: MutationProps<FormDataType>) => {
       const res = await axios.post(`${baseUrl}${url}`, JSON.stringify(data), {
         headers: {
           Authorization: `Bearer ${cookies.token}`,
           Accept: "application/json",
+          "Content-Type": "application/json",
           ...requestConfig?.headers,
         },
         ...requestConfig,
@@ -51,22 +60,34 @@ export const usePOST = <FormValues extends Record<string, any>>() => {
 
       return res;
     },
-  );
+  });
 
-  const submit = async ({
+  const submit = async <SuccessResponseType = any, ErrorResponseType = any>({
     url,
     data,
     requestConfig,
     mutateOptions,
-  }: SubmitProps<FormValues>) => {
+  }: SubmitProps<FormDataType, SuccessResponseType, ErrorResponseType>) => {
     return await mutation.mutateAsync(
-      { url, data, requestConfig },
-      mutateOptions,
+      { url, data: data || formData, requestConfig },
+      {
+        onError(error, variables, context) {
+          if (!isAxiosError(error)) {
+            notify(t("errors.unknown"));
+            return;
+          }
+          mutateOptions?.onError &&
+            mutateOptions?.onError(error, variables, context);
+        },
+        ...mutateOptions,
+      }
     );
   };
 
   return {
     submit,
     mutation,
+    formData,
+    setFormData,
   };
 };
