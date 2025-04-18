@@ -1,0 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Raleway:ital,wght@0,100..900;1,100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
+@import "tailwindcss";
+
+body {
+  font-family: "Work Sans", sans-serif;
+}
+
+@theme {
+  --color-primary: #1f7bf4;
+  --color-default: #8e8e8e;
+  --color-secondary: #212224;
+}

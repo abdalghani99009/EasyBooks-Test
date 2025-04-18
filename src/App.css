@@ -1,0 +1,12 @@
+.language-name {
+  padding: 0 !important;
+
+  color: #212224 !important;
+}
+
+.language-select .dx-dropdowneditor-button {
+  margin-inline-end: 0 !important;
+}
+.language-select .dx-dropdowneditor-input-wrapper {
+  padding-inline-end: 10px !important;
+}
