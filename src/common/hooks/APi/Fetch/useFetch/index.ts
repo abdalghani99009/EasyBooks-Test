@@ -1,6 +1,6 @@
 import { AxiosRequestConfig } from "axios";
 import { AxiosError } from "axios";
-import { QueryOptions, useQuery } from "@tanstack/react-query";
+import { UseQueryOptions, useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 
@@ -10,7 +10,7 @@ export interface UseFetchProps<T> {
   url: string;
   key: string[];
   params?: string | string[][] | Record<string, string> | URLSearchParams;
-  queryOptions?: QueryOptions<T, AxiosError>;
+  queryOptions?: Omit<UseQueryOptions<T, AxiosError>, "queryKey">;
   requestConfig?: AxiosRequestConfig;
 }
 
@@ -22,7 +22,7 @@ export default function useFetch<T>({
   requestConfig,
 }: UseFetchProps<T>) {
   const [urlToSend, setUrlToSend] = useState(url);
-  const [cookies] = useCookies(["token"], {
+  const [cookies, _setCookie] = useCookies(["token"], {
     doNotParse: true,
   });
 
@@ -31,7 +31,6 @@ export default function useFetch<T>({
       setUrlToSend(url + "?" + new URLSearchParams(params));
     }
   }, [params]);
-
   const query = useQuery<T, AxiosError>({
     queryKey: key,
     queryFn: () =>
