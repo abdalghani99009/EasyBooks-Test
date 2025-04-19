@@ -18,12 +18,11 @@ i18n
   )
   .init({
     fallbackLng: import.meta.env.VITE_LANGUAGE || "en",
-    debug: true,
     interpolation: {
       escapeValue: false,
     },
     supportedLngs: ["en", "ar"],
-    ns: ["auth", "common", "site-routes", "category", "product", "errors"],
+    ns: ["auth", "common", "students"],
     defaultNS: "common",
     backend: {
       loadPath: "/locales/{{lng}}/{{ns}}/translation.json",

@@ -9,7 +9,7 @@ declare module "i18next" {
     resources: {
       auth: typeof AuthNameSpace;
       common: typeof CommonNameSpace;
-      student: typeof StudentNameSpace;
+      students: typeof StudentNameSpace;
     };
   }
 }

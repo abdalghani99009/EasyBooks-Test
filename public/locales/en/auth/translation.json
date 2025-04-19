@@ -5,5 +5,11 @@
     "password": "Password",
     "sign_in": "Sign In",
     "success": "You have logged in successfully!"
+  },
+  "logout": {
+    "title": "Logout",
+    "sure?": "Are you sure you would like to sign out of your account?",
+    "cancel": "Cancel",
+    "confirm": "Confirm"
   }
 }
