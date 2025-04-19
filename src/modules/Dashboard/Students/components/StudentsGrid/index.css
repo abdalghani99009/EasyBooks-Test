@@ -1,0 +1,30 @@
+.students-grid .dx-datagrid-header-panel {
+  margin-bottom: 20px !important;
+}
+.students-grid .dx-data-row td {
+  padding: 13px !important;
+}
+.students-grid .dx-editor-cell .dx-texteditor {
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* Adjust the input field inside */
+.students-grid .dx-editor-cell .dx-texteditor-input {
+  padding: 0 !important; /* Horizontal padding */
+  height: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Optional: for DateBox editor (to keep calendar icon aligned) */
+.students-grid .dx-editor-cell .dx-datebox {
+  height: 100% !important;
+}
+
+@media (max-width: 640px) {
+  .students-grid .dx-datagrid-header-panel {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}

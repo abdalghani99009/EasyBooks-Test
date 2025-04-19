@@ -1,16 +1,14 @@
-export interface StudentsDataInterface {}
-
-interface Translation {
+export interface Translation {
   name: string;
   cultureCode: 0 | 1; // 0 for English, 1 for Arabic
 }
 
-interface Grade {
+export interface Grade {
   id: string;
   translations: Translation[];
 }
 
-interface Gender {
+export interface Gender {
   id: string;
   translations: Translation[];
 }
@@ -26,4 +24,15 @@ export interface Student {
   city: string;
   phone: string;
   remarks: string;
+}
+
+export interface BulkStudent extends Omit<Student, "grade" | "gender"> {
+  grade: string;
+  gender: string;
+}
+
+export interface BulkUpdatePayload {
+  deleteId: string[];
+  addedStudent: BulkStudent[];
+  editedStudent: BulkStudent[];
 }

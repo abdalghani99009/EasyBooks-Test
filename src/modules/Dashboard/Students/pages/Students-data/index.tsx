@@ -1,6 +1,11 @@
 import useStudentsData from "@/modules/Dashboard/Students/hooks/Students-data";
+import StudentsData from "../../components/Students-data";
 
-export default function StudentsData() {
+export default function StudentsDataPage() {
   const {} = useStudentsData();
-  return <div></div>;
+  return (
+    <div>
+      <StudentsData />
+    </div>
+  );
 }
