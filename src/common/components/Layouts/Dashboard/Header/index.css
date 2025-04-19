@@ -1,0 +1,14 @@
+.header-title .dx-item-content {
+  padding: 0;
+  margin: 0;
+}
+
+.dx-theme-generic {
+  .dx-toolbar {
+    padding: 10px 0;
+  }
+
+  .user-button > .dx-button-content {
+    padding: 3px;
+  }
+}
