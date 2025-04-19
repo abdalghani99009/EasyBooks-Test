@@ -7,6 +7,7 @@ interface UserState {
 
 interface UserActions {
   setUser: (user: string) => void;
+  setIsAuthenticated: (isAuthenticated: boolean) => void;
   logout: () => void;
 }
 
@@ -20,6 +21,9 @@ const useUserStore = create<UserState & UserActions>((set) => ({
 
   logout: () => {
     set({ user: undefined, isAuthenticated: false });
+  },
+  setIsAuthenticated: (isAuthenticated) => {
+    set({ isAuthenticated });
   },
 }));
 
