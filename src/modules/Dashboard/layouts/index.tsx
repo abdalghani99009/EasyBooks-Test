@@ -4,9 +4,11 @@ import NavigationList from "@/common/components/Layouts/Dashboard/NavigationList
 import { Outlet } from "react-router-dom";
 import "./index.css";
 import { useScreenSize } from "@/common/hooks/media-query/useScreenSize";
+import useI18nStore from "@/store/i18n/useI18nStore";
 export default function DashboardLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { isMedium } = useScreenSize();
+  const { dir } = useI18nStore();
   return (
     <div className="w-full h-screen max-h-screen overflow-hidden flex flex-col">
       <Header
@@ -22,7 +24,11 @@ export default function DashboardLayout() {
             onClick={() => setSidebarOpen(false)}
           />
         )}
-        <div className={`sidebar-container ${sidebarOpen ? "open" : ""}`}>
+        <div
+          className={`sidebar-container ${sidebarOpen ? "open" : ""} ${
+            dir === "rtl" ? "rtl" : ""
+          }`}
+        >
           <NavigationList onClose={() => setSidebarOpen(false)} />
         </div>{" "}
         <div className="content-area flex-1 p-4 bg-[#f3f6f9] overflow-auto">

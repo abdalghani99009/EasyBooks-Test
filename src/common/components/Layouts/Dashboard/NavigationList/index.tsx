@@ -49,7 +49,10 @@ export default function NavigationList({ onClose }: { onClose?: () => void }) {
   };
 
   return (
-    <div className="sidebar h-full flex flex-col justify-between w-60 !border-e !border-[#E8E8E8] bg-white">
+    <div
+      style={{ height: window.innerHeight - 56.8 }}
+      className="sidebar flex flex-col justify-between w-60 !border-e !border-[#E8E8E8] bg-white"
+    >
       <List
         width={240}
         keyExpr="id"
