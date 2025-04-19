@@ -6,7 +6,7 @@ import { LanguageItem } from "@/common/types/i18n/langauge-select";
 
 export default function useLanguageSelect() {
   const { t } = useTranslation("common");
-  const { setCultureCode } = useLanguage();
+  const { setCultureCode, currentCultureCode } = useLanguage();
   const languages: LanguageItem[] = [
     { text: t("language.english"), id: cultureCode.En },
     { text: t("language.arabic"), id: cultureCode.Ar },
@@ -20,5 +20,5 @@ export default function useLanguageSelect() {
     },
   });
 
-  return { dataSource, setCultureCode, t };
+  return { dataSource, setCultureCode, t, currentCultureCode };
 }

@@ -18,5 +18,5 @@ export default function useLanguage() {
     setDir(currentCultureCode === cultureCode.En ? "ltr" : "rtl");
   }, [currentCultureCode]);
 
-  return { toggleLanguage, cultureCode, setCultureCode, setDir, dir };
+  return { toggleLanguage, setCultureCode, setDir, dir, currentCultureCode };
 }
