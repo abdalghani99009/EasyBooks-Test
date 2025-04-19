@@ -1,10 +1,10 @@
 import "devextreme/dist/css/dx.material.custom-scheme.css";
 import "./App.css";
 import AppRoutes from "./routes";
-import useI18nStore from "./store/i18n/useI18nStore";
+import useApp from "./common/hooks/App/useApp";
 
 function App() {
-  const { dir } = useI18nStore();
+  const { dir } = useApp();
   return (
     <main dir={dir}>
       <AppRoutes />
