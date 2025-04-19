@@ -5,10 +5,10 @@ import ReactCookiesProvider from "./react-cookie/ReactCookiesProvider";
 
 export default function AppProviders({ children }: CommonProviderProps) {
   return (
-    <QueryProvider>
-      <I18nProvider>
-        <ReactCookiesProvider>{children}</ReactCookiesProvider>
-      </I18nProvider>
-    </QueryProvider>
+    <ReactCookiesProvider>
+      <QueryProvider>
+        <I18nProvider>{children}</I18nProvider>
+      </QueryProvider>
+    </ReactCookiesProvider>
   );
 }
