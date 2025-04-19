@@ -9,7 +9,7 @@ export default function LoginForm() {
   return (
     <>
       <LoadPanel visible={isPending} shading shadingColor="rgba(0,0,0,0.4)" />
-      <div className="flex flex-col gap-12 p-12 max-w-lg min-w-lg bg-white rounded-lg justify-center">
+      <div className="flex flex-col gap-8 sm:gap-12 p-6 sm:p-12 max-w-lg w-full bg-white rounded-lg justify-center">
         <h1 className="text-3xl font-semibold text-secondary">
           {t("login.title")}
         </h1>

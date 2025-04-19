@@ -19,6 +19,7 @@ export default function useLogin() {
   const [_cookies, setCookie] = useCookies(["token"], {
     doNotParse: true,
   });
+
   const navigate = useNavigate();
 
   const handleSubmit = (e: FormEvent<HTMLElement>) => {
@@ -36,9 +37,9 @@ export default function useLogin() {
     const token = data?.data?.token;
     const userName = data?.data?.userName;
     if (token) {
-      setCookie("token", token);
-      notify(t("login.success"), "success");
+      setCookie("token", token, { path: "/" });
       navigate("/dashboard/students");
+      notify(t("login.success"), "success");
     }
     if (userName) {
       setUser(userName);
