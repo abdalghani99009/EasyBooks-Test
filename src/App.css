@@ -1,12 +1,17 @@
-.language-name {
-  padding: 0 !important;
-
-  color: #212224 !important;
+.dx-icon-student {
+  background-image: url("./common/assets/images/student.svg");
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
 }
 
-.language-select .dx-dropdowneditor-button {
-  margin-inline-end: 0 !important;
+.dx-icon-logout {
+  background-image: url("./common/assets/images/logout.svg");
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
 }
-.language-select .dx-dropdowneditor-input-wrapper {
-  padding-inline-end: 10px !important;
+
+.dx-icon-signout {
+  background-image: url("./common/assets/images/signout.svg");
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
 }
