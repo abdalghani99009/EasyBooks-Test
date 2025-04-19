@@ -1,4 +1,4 @@
-import "devextreme/dist/css/dx.material.custom-scheme.css";
+import "@/common/assets/css/dx.material.custom-scheme.css";
 import "./App.css";
 import AppRoutes from "./routes";
 import useApp from "./common/hooks/App/useApp";
