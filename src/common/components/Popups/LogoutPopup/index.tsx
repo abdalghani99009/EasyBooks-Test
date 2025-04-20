@@ -4,6 +4,7 @@ import { Dispatch, SetStateAction } from "react";
 import { useTranslation } from "react-i18next";
 import SignoutImage from "@/common/assets/images/signout.svg";
 import useI18nStore from "@/store/i18n/useI18nStore";
+import { useScreenSize } from "@/common/hooks/media-query/useScreenSize";
 
 export default function LogoutPopup({
   isVisible,
@@ -16,6 +17,7 @@ export default function LogoutPopup({
 }) {
   const { t } = useTranslation("auth");
   const { dir } = useI18nStore();
+  const { isSmall } = useScreenSize();
 
   return (
     <Popup
@@ -31,8 +33,8 @@ export default function LogoutPopup({
           </h4>
         </div>
       )}
-      width={500}
-      height={300}
+      width={isSmall ? 300 : 500}
+      height={isSmall ? 220 : 300}
     >
       <div className="flex justify-between h-full pb-4 flex-col gap-4">
         <p>{t("logout.sure?")}</p>

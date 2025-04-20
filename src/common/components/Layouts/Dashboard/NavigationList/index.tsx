@@ -2,7 +2,7 @@ import List from "devextreme-react/list";
 import { useTranslation } from "react-i18next";
 import "./index.css";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { ItemClickEvent } from "devextreme/ui/list";
 import Button from "devextreme-react/cjs/button";
 import LogoutPopup from "@/common/components/Popups/LogoutPopup";
@@ -36,17 +36,20 @@ export default function NavigationList({ onClose }: { onClose?: () => void }) {
     return matchingItem ? matchingItem.id : null;
   }, [location.pathname, navigation]);
 
-  const handleItemClick = (
-    e: ItemClickEvent<{
-      id: number;
-      text: string;
-      icon: string;
-      path: string;
-    }>
-  ) => {
-    navigate(e?.itemData?.path!);
-    onClose?.(); // Close sidebar on mobile after selection
-  };
+  const handleItemClick = useCallback(
+    (
+      e: ItemClickEvent<{
+        id: number;
+        text: string;
+        icon: string;
+        path: string;
+      }>
+    ) => {
+      navigate(e?.itemData?.path!);
+      onClose?.();
+    },
+    [navigate, onClose]
+  );
 
   return (
     <div

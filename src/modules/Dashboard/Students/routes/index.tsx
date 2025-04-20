@@ -1,4 +1,5 @@
-import { lazy } from "react";
+import PagesLoader from "@/common/components/Loading/PagesLoader";
+import { Suspense, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
 const StudentsData = lazy(
   () => import("@/modules/Dashboard/Students/pages/Students-data")
@@ -6,8 +7,10 @@ const StudentsData = lazy(
 
 export default function StudentsRoutes() {
   return (
-    <Routes>
-      <Route path="/" element={<StudentsData />} />
-    </Routes>
+    <Suspense fallback={<PagesLoader />}>
+      <Routes>
+        <Route path="/" element={<StudentsData />} />
+      </Routes>
+    </Suspense>
   );
 }

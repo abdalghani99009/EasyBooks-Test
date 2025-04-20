@@ -6,17 +6,10 @@ import { useEffect } from "react";
 export default function useLanguage() {
   const { currentCultureCode, setCultureCode, setDir, dir } = useI18nStore();
 
-  const toggleLanguage = () => {
-    setCultureCode(
-      currentCultureCode === cultureCode.En ? cultureCode.Ar : cultureCode.En
-    );
-    i18n.changeLanguage(currentCultureCode === cultureCode.En ? "ar" : "en");
-  };
-
   useEffect(() => {
     i18n.changeLanguage(currentCultureCode === cultureCode.En ? "en" : "ar");
     setDir(currentCultureCode === cultureCode.En ? "ltr" : "rtl");
-  }, [currentCultureCode]);
+  }, [currentCultureCode, i18n, setDir]);
 
-  return { toggleLanguage, setCultureCode, setDir, dir, currentCultureCode };
+  return { setCultureCode, setDir, dir, currentCultureCode };
 }

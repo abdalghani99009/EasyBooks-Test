@@ -1,5 +1,5 @@
 import { usePOST } from "@/common/hooks/APi/Post/usePost";
-import { FormEvent } from "react";
+import { FormEvent, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { LoginFormData, LoginSuccessResponse } from "../../types/Login";
 import useUserStore from "@/store/User/useUserStore";
@@ -22,38 +22,43 @@ export default function useLogin() {
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e: FormEvent<HTMLElement>) => {
-    e.preventDefault();
-    submit<LoginSuccessResponse>({
-      url: "User/SignIn",
-      mutateOptions: {
-        onSuccess: handleLoginSuccess,
-        onError: handleLoginError,
-      },
-    });
-  };
+  const handleLoginSuccess = useCallback(
+    (data: AxiosResponse<LoginSuccessResponse>) => {
+      const token = data?.data?.token;
+      const userName = data?.data?.userName;
+      if (token) {
+        setCookie("token", token, { path: "/" });
+        navigate("/dashboard/students");
+        notify(t("login.success"), "success");
+      }
+      if (userName) {
+        setUser(userName);
+      }
+    },
+    [setCookie, navigate, t, setUser]
+  );
 
-  const handleLoginSuccess = (data: AxiosResponse<LoginSuccessResponse>) => {
-    const token = data?.data?.token;
-    const userName = data?.data?.userName;
-    if (token) {
-      setCookie("token", token, { path: "/" });
-      navigate("/dashboard/students");
-      notify(t("login.success"), "success");
-    }
-    if (userName) {
-      setUser(userName);
-    }
-  };
-
-  const handleLoginError = (error: Error | AxiosError) => {
+  const handleLoginError = useCallback((error: Error | AxiosError) => {
     const axiosError = error as AxiosError;
     const status = axiosError.response?.status;
-    console.log(status);
     if (status === 422 || status === 400) {
       notify(axiosError.response?.data, "error");
     }
-  };
+  }, []);
+
+  const handleSubmit = useCallback(
+    (e: FormEvent<HTMLElement>) => {
+      e.preventDefault();
+      submit<LoginSuccessResponse>({
+        url: "User/SignIn",
+        mutateOptions: {
+          onSuccess: handleLoginSuccess,
+          onError: handleLoginError,
+        },
+      });
+    },
+    [submit, handleLoginError, handleLoginSuccess, t]
+  );
 
   return { t, handleSubmit, setFormData, isPending };
 }

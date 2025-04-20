@@ -1,11 +1,12 @@
-import useStudentsData from "@/modules/Dashboard/Students/hooks/Students-data";
-import StudentsData from "../../components/Students-data";
+import PagesLoader from "@/common/components/Loading/PagesLoader";
+import { Suspense, lazy } from "react";
+
+const StudentsData = lazy(() => import("../../components/Students-data"));
 
 export default function StudentsDataPage() {
-  const {} = useStudentsData();
   return (
-    <div>
+    <Suspense fallback={<PagesLoader shading={false} />}>
       <StudentsData />
-    </div>
+    </Suspense>
   );
 }
