@@ -2,15 +2,15 @@
 
 const ROWS = 5;
 const COLUMN_WIDTHS = [
-  "min-w-[110px] w-[110px]", // First Name
-  "min-w-[110px] w-[110px]", // Last Name
-  "min-w-[140px] w-[140px]", // Date of Birth
-  "min-w-[100px] w-[100px]", // Grade
-  "min-w-[90px] w-[90px]", // Gender
-  "min-w-[100px] w-[100px]", // Country
-  "min-w-[100px] w-[100px]", // City
-  "min-w-[120px] w-[120px]", // Mobile
-  "min-w-[100px] w-[100px]", // Notes
+  "min-w-[110px]", // First Name
+  "min-w-[110px]", // Last Name
+  "min-w-[140px]", // Date of Birth
+  "min-w-[100px]", // Grade
+  "min-w-[90px]", // Gender
+  "min-w-[100px]", // Country
+  "min-w-[100px]", // City
+  "min-w-[120px]", // Mobile
+  "min-w-[100px]", // Notes
 ];
 
 export default function StudentsGridSkeleton() {
@@ -18,11 +18,11 @@ export default function StudentsGridSkeleton() {
     <div className="max-w-full w-full animate-pulse">
       {/* Header */}
       <div className="mb-6 flex justify-between items-center">
-        <div className="flex items-center gap-4 mb-6">
+        <div className="flex items-center gap-4">
           <span className="font-medium">Filter By:</span>
-          <div className="h-8 w-64 bg-gray-200 rounded"></div>
+          <div className="h-8 w-40 sm:w-64 bg-gray-200 rounded"></div>
         </div>
-        <div className="flex gap-3 items-center">
+        <div className="flex gap-3 max-sm:hidden items-center">
           <div className="bg-gray-200 rounded-full size-8"></div>
           <div className="bg-gray-200 rounded-full size-8"></div>
           <div className="bg-gray-200 rounded-full size-8"></div>
@@ -68,7 +68,7 @@ export default function StudentsGridSkeleton() {
 
       {/* Pagination */}
       <div className="flex justify-between items-center mt-4 pt-4 border-t border-gray-200">
-        <div className="h-6 w-48 bg-gray-200 rounded"></div>
+        <div className="h-6 w-28 sm:w-36 bg-gray-200 rounded"></div>
         <div className="flex gap-2">
           <div className="h-8 w-8 bg-gray-200 rounded"></div>
           <div className="h-8 w-8 bg-gray-200 rounded"></div>
