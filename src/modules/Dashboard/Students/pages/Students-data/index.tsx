@@ -5,7 +5,7 @@ const StudentsData = lazy(() => import("../../components/Students-data"));
 
 export default function StudentsDataPage() {
   return (
-    <Suspense fallback={<PagesLoader shading={false} />}>
+    <Suspense fallback={<PagesLoader />}>
       <StudentsData />
     </Suspense>
   );

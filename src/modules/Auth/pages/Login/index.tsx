@@ -5,7 +5,7 @@ const LoginForm = lazy(() => import("../../components/Login/LoginForm"));
 
 export default function Login() {
   return (
-    <Suspense fallback={<PagesLoader shading={false} />}>
+    <Suspense fallback={<PagesLoader />}>
       <LoginForm />
     </Suspense>
   );
