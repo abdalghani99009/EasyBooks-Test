@@ -17,7 +17,7 @@ export default function StudentsData() {
 
       <PagesLoader isVisible={isLoading || isPending} />
       <Suspense fallback={<StudentsGridSkeleton />}>
-        <StudentsGridSkeleton />
+        <StudentsGrid {...gridProps} />
       </Suspense>
     </div>
   );
