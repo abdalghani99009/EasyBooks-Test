@@ -15,7 +15,7 @@ export default function StudentsData() {
         {gridProps.t("students_data")}
       </h2>
 
-      <PagesLoader isVisible={isLoading || isPending} />
+      <PagesLoader isVisible={isPending} />
       <Suspense fallback={<StudentsGridSkeleton />}>
         <StudentsGrid {...gridProps} />
       </Suspense>
